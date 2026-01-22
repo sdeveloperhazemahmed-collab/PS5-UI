@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>PlayStation Games</title>
+    <style>
+        body {
+            background: #0f172a;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        .games {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .card img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .rating {
+            padding: 0 10px 10px;
+            color: #38bdf8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 style="text-align:center">PlayStation Games</h1>
+    <div class="games" id="games"></div>
+
+    <script>
+        const API_KEY = "a8b712a8bab644d3b5ce3c44e66275cb";
+        const END_POINT = "https://api.rawg.io/api";
+
+        fetch(`${END_POINT}/games?platforms=18,187&key=${API_KEY}`)
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById("games");
+
+                data.results.forEach(game => {
+                    const card = document.createElement("div");
+                    card.className = "card";
+
+                    card.innerHTML = `
+            <img src="${game.background_image}" />
+            <h3>${game.name}</h3>
+            <div class="rating">⭐ ${game.rating}</div>
+          `;
+
+                    container.appendChild(card);
+                });
+            });
+        осн
+
+    </script>
+</body>
+
+</html>
