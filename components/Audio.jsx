@@ -31,7 +31,7 @@ export default function Audio({ volume, setVolume }) {
 
   return (
     <>
-      <audio ref={audioRef} src="public/music.mp3" loop muted={muted} />
+      <audio ref={audioRef} src="music.mp3" loop muted={muted} />
 
       <button onClick={toggleMute} className="text-white text-xl">
         {muted || volume === 0 ? "🔇" : "🔊"}

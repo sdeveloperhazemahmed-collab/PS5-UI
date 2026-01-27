@@ -6,7 +6,7 @@ export default function Cards({ addPlayer, players, setPlayers, hovered, setHove
   };
 
   return (
-    <div className="flex gap-4 w-full h-full overflow-x-auto scroll-smooth ps-scroll pb-2">
+    <div className="flex gap-4 w-full h-[238px] overflow-x-auto scroll-smooth ps-scroll pb-2">
       {players.map((player) => (
         <div
           key={player.id}
