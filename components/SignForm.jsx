@@ -1,4 +1,4 @@
-export default function SignForm({ isSignUpMode, setIsSignUpMode, password, setPassword, confirmPassword, setConfirmPassword, email, setEmail, username, setUsername, userImg, setCurrentUser, setLogIn, showPlayersBox, setShowPlayersBox, logIn, showNotificationBox, setShowNotificationBox, showUserInterestsBox, setShowUserInterestsBox, showPlay2Win, setShowPlay2Win }) {
+export default function SignForm({ isSignUpMode, setIsSignUpMode, password, setPassword, confirmPassword, setConfirmPassword, email, setEmail, username, setUsername, userImg, setCurrentUser, setLogIn, showPlayersBox, setShowPlayersBox, logIn, showNotificationBox, setShowNotificationBox, showUserInterestsBox, setShowUserInterestsBox, showPlay2Win, setShowPlay2Win, showStoreBox, setShowStoreBox }) {
 	return (
 		<form
 			onSubmit={(e) => {
@@ -73,7 +73,7 @@ export default function SignForm({ isSignUpMode, setIsSignUpMode, password, setP
 							value={confirmPassword}
 							onChange={(e) => setConfirmPassword(e.target.value)}
 							placeholder="Confirm Password..."
-							className="p-2 pl-3 rounded border bg-black/30 outline-none"
+							className="p-2 pl-3 rounded outline-none border bg-[#1a1a1a74]"
 							required
 						/>
 					</span>
@@ -82,7 +82,7 @@ export default function SignForm({ isSignUpMode, setIsSignUpMode, password, setP
 
 			<button
 				type="submit"
-				className="mt-4 p-1 w-full transition-all duration-200 active:translate-y-[1px] active:bg-[#2424247c] bg-[#1a1a1a] hover:shadow-[0_0_7px_rgb(0,170,255)] hover:border-blue-500 border rounded-lg text-white"
+				className="mt-4 p-1 w-full transition-all duration-200 rounded-lg backdrop-blur-[10px] active:translate-y-[1px] text-[#1a1a1a] dark:text-white dark:active:bg-[#2424247c] dark:bg-[#1a1a1a] active:bg-[#dbdbdb7c] bg-[#e6e9ee] hover:shadow-[0_0_7px_rgb(37,99,235)] dark:hover:shadow-[0_0_7px_rgb(0,170,255)] dark:hover:border-blue-500 hover:border-blue-600 border border-[#1a1a1a] dark:border-white"
 			>
 				{isSignUpMode ? "Sign Up" : "Sign In"}
 			</button>
@@ -94,6 +94,7 @@ export default function SignForm({ isSignUpMode, setIsSignUpMode, password, setP
 					if (showUserInterestsBox) setShowUserInterestsBox(false);
 					if (showNotificationBox) setShowNotificationBox(false);
 					if (showPlayersBox) setShowPlayersBox(false);
+					if (showStoreBox) setShowStoreBox(false);
 					if (showPlay2Win) setShowPlay2Win(false);
 					if (logIn) setLogIn(false);
 					setIsSignUpMode(true);

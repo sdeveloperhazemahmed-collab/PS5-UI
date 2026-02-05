@@ -1,7 +1,4 @@
-import { useMemo } from "react";
-import { useEffect, useState } from "react";
-import PSDarkBG from "../data/PSDarkBg.js";
-import PSLightBG from "../data/PSLightBg.js";
+import { useEffect, useState, useMemo } from "react";
 
 import fifa_25 from "../data/fifa_25.js";
 import mafia_iii from "../data/mafia_iii.js";
@@ -33,17 +30,14 @@ import red_dead_redemption_2_Cover from "../games/red_dead_redemption_2.png";
 import resident_evil_7_biohazard_Cover from "../games/resident_evil_7_biohazard.png";
 import crash_team_racing_nitro_fueled_Cover from "../games/crash_team_racing_nitro_fueled.png";
 
-export default function Games({ title, setTitle, darkMode }) {
-  const PSDark = PSDarkBG;
-  const PSLight = PSLightBG;
 
+export default function Games({ title, setTitle, darkMode, bg, setBg, PSDark, PSLight }) {
   const [isClicked, setIsClicked] = useState(false);
-  const [bg, setBg] = useState(PSDark());
 
   const games = useMemo(() => [
     { id: 1, name: "Cyberpunk 2077", bg: cyberpunk_2077, img: cyberpunk_2077_Cover },
-    { id: 2, name: "Days Gone", bg: days_gone, img: mafia_iii_Cover },
-    { id: 3, name: "Mafia III", bg: mafia_iii, img: days_gone_Cover },
+    { id: 2, name: "Days Gone", bg: days_gone, img: days_gone_Cover },
+    { id: 3, name: "Mafia III", bg: mafia_iii, img: mafia_iii_Cover },
     { id: 4, name: "Mortal Kombat 1", bg: mortal_kombat_1, img: mortal_kombat_1_Cover },
     { id: 5, name: "NFS Heat", bg: need_for_speed_heat, img: need_for_speed_heat_Cover },
     { id: 6, name: "Red Dead Redemption II", bg: red_dead_redemption_2, img: red_dead_redemption_2_Cover },
@@ -99,240 +93,13 @@ export default function Games({ title, setTitle, darkMode }) {
             }}
             onMouseLeave={() => {
               setTitle("");
-              if (darkMode) {
-                setBg(PSDark());
-              } else {
-                setBg(PSLight());
-              }
+              if (darkMode) setBg(PSDark());
+              else setBg(PSLight());
             }}
           >
             <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
               src={game.img} /></li>
         ))}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Cyberpunk 2077");
-            document.body.style.backgroundImage = cyberpunk_2077();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/cyberpunk_2077.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Days Gone");
-            document.body.style.backgroundImage = days_gone();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/days_gone.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Mafia III");
-            document.body.style.backgroundImage = mafia_iii();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/mafia_iii.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Mortal Kombat 1");
-            document.body.style.backgroundImage = mortal_kombat_1();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/mortal_kombat_1.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("NFS Heat");
-            document.body.style.backgroundImage = need_for_speed_heat();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/need_for_speed_heat.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Red Dead Redemption II");
-            document.body.style.backgroundImage = red_dead_redemption_2();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/red_dead_redemption_2.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Resident Evil 7 Biohazard");
-            document.body.style.backgroundImage = resident_evil_7_biohazard();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/resident_evil_7_biohazard.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Rocket League");
-            document.body.style.backgroundImage = rocket_league();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/rocket_league.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("The Evil Within II");
-            document.body.style.backgroundImage = the_evil_within_2();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/the_evil_within_2.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Uncharted 4");
-            document.body.style.backgroundImage = uncharted_4();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/uncharted_4.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Watch Dogs Legion");
-            document.body.style.backgroundImage = watch_dogs_legion();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/watch_dogs_legion.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Battlefield 2042");
-            document.body.style.backgroundImage = battlefield_2042();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/battlefield_2042.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("CTR Nitro Fueled");
-            document.body.style.backgroundImage = crash_team_racing_nitro_fueled();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/crash_team_racing_nitro_fueled.png" /></li> */}
-
-        {/* <li className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-          onMouseEnter={() => {
-            setTitle("Fifa 25");
-            document.body.style.backgroundImage = fifa_25();
-          }}
-          onMouseLeave={() => {
-            setTitle("");
-            if (darkMode) {
-              document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-            } else {
-              document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-            }
-          }}>
-          <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-            src="../games/fifa_25.png" /></li> */}
       </ul>
 
       <div className="flex justify-center items-center cursor-pointer w-[6.07%] relative flex-shrink-0 rounded-sm z-20 opacity-60"
@@ -358,56 +125,3 @@ export default function Games({ title, setTitle, darkMode }) {
     </section>
   );
 }
-
-
-
-
-
-// const [games, setGames] = useState([
-//   { id: 1, name: "Cyberpunk 2077", bg: cyberpunk_2077(), img: "../games/cyberpunk_2077.png"},
-//   { id: 2, name: "Days Gone", bg: days_gone(), img: "../games/days_gone.png"},
-//   { id: 3, name: "Mafia III", bg: mafia_iii(), img: "../games/mafia_iii.png"},
-//   { id: 4, name: "Mortal Kombat 1", bg: mortal_kombat_1(), img: "../games/mortal_kombat_1.png"},
-//   { id: 5, name: "NFS Heat", bg: need_for_speed_heat(), img: "../games/need_for_speed_heat.png"},
-//   { id: 6, name: "Red Dead Redemption II", bg: red_dead_redemption_2(), img: "../games/red_dead_redemption_2.png"},
-//   { id: 7, name: "Resident Evil 7 Biohazard", bg: resident_evil_7_biohazard(), img: "../games/resident_evil_7_biohazard.png"},
-//   { id: 8, name: "Rocket League", bg: rocket_league(), img: "../games/rocket_league.png"},
-//   { id: 9, name: "The Evil Within II", bg: the_evil_within_2(), img: "../games/the_evil_within_2.png"},
-//   { id: 10, name: "Uncharted 4", bg: uncharted_4(), img: "../games/uncharted_4.png"},
-//   { id: 11, name: "Watch Dogs Legion", bg: watch_dogs_legion(), img: "../games/watch_dogs_legion.png"},
-//   { id: 12, name: "Battlefield 2042", bg: battlefield_2042(), img: "../games/battlefield_2042.png"},
-//   { id: 13, name: "CTR Nitro Fueled", bg: crash_team_racing_nitro_fueled(), img: "../games/crash_team_racing_nitro_fueled.png"},
-//   { id: 14, name: "Fifa 2025", bg: fifa_25(), img: "../games/fifa_25.png"},
-// ]);
-// return (
-//   <section className="flex items-center w-full h-[450px] fixed bottom-0 left-0 z-0 mb-1">
-//     <h1 className="font-thin text-4xl absolute top-7 left-[434px]">{title}</h1>
-
-//     <div className="flex justify-center items-center w-[10.46%] flex-shrink-0 rounded-sm z-20 opacity-60 relative">
-//       <img src="../games/2.jpg" />
-//       {isClicked ? (
-//         <svg onClick={() => { setIsClicked(!isClicked); }} className="cursor-pointer absolute w-7 right-[-3px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 5L11 7.33333M9 19L15 12L13.5 10.25" stroke="#595959" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-//       ) : (
-//         <svg onClick={() => { setIsClicked(!isClicked); }} className="cursor-pointer absolute w-7 right-[-3px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M15 19L9 12L10.5 10.25M15 5L13 7.33333" stroke="#595959" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
-//       )}
-//     </div>
-
-//     <ul className={`flex gap-5 items-center p-5 w-full h-[300px] overflow-x-auto scroll-smooth ps-scroll transition-all duration-1000 relative right-0 ${isClicked ? "right-full z-0" : ""}`}>
-//       {games.map((game) => (
-//         <li key={game.id}
-//           className="cursor-pointer w-[13%] transition-all duration-200 flex-shrink-0"
-//           onMouseEnter={() => {
-//             setTitle(game.name);
-//             document.body.style.backgroundImage = game.bg;
-//           }}
-//           onMouseLeave={() => {
-//             setTitle("");
-//             if (darkMode) {
-//               document.body.style.backgroundImage = "url('PS5_bg1.jpg')";
-//             } else {
-//               document.body.style.backgroundImage = "url('PS5_bg2.jpg')";
-//             }
-//           }}>
-//           <img className="transition-all duration-200 rounded-sm hover:scale-110 shadow-[2px_2px_1px_rgba(0,0,0,0.7)]"
-//             src={game.img} /></li>
-//       ))}

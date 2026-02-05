@@ -2,13 +2,13 @@ export default function PlayersEditingWindow({ showManageBox, setShowManageBox, 
 	return (
 		<>
 			<button
-				className="flex justify-center items-center w-[60%] p-1 cursor-pointer transition-all duration-200 backdrop-blur-[10px] active:translate-y-[1px] active:bg-[#2424247c] bg-[#1a1a1a] hover:shadow-[0_0_7px_rgb(0,170,255)] hover:border-blue-500 border rounded-lg text-white"
+				className="flex justify-center items-center w-[60%] p-1 cursor-pointer transition-all duration-200 backdrop-blur-[10px] active:translate-y-[1px] text-[#1a1a1a] dark:text-white dark:active:bg-[#2424247c] dark:bg-[#1a1a1a] active:bg-[#dbdbdb7c] bg-[#e6e9ee] hover:shadow-[0_0_7px_rgb(37,99,235)] dark:hover:shadow-[0_0_7px_rgb(0,170,255)] dark:hover:border-blue-500 hover:border-blue-600 border border-[#1a1a1a] dark:border-white rounded-lg"
 				onClick={() => { setShowManageBox(!showManageBox); setBool(!bool) } }
 			>
 				Manage Players
 			</button>
 			{showManageBox && (
-				<div className="flex absolute w-[99%] h-[67%] gap-4 p-4 pb-6 pt-3 mt-3 overflow-x-auto scroll-smooth ps-scroll">
+				<div className="flex absolute w-[99%] h-[66.4%] gap-4 p-4 pb-6 pt-3 mt-3 overflow-x-auto scroll-smooth ps-scroll top-[60px]">
 					{players.map((player) => (
 						<div
 							key={player.id}

@@ -2,7 +2,6 @@ export default function PSDarkBg() {
   const PSDarkBg = [
     "url('PS5_bg1.jpg')",
     "url('PS5_bg2.jpg')",
-    "url('PS5_bg3.jpg')",
   ];
 
   const i = Math.floor(Math.random() * PSDarkBg.length);

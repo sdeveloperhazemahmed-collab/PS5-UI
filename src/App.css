@@ -1,3 +1,7 @@
+:root {
+  --card-scale: 1.25;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +9,6 @@
 }
 
 body {
-  background: url('PS5_bg2.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;

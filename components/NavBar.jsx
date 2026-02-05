@@ -1,12 +1,12 @@
 import NavButtons from "./NavButtons";
 
-export default function NavBar({ showPlayersBox, setShowPlayersBox, logIn, setLogIn, userImg, showNotificationBox, setShowNotificationBox, showUserInterestsBox, setShowUserInterestsBox, showPlay2Win, setShowPlay2Win, showStoreBox, setShowStoreBox }) {
+export default function NavBar({ showPlayersBox, setShowPlayersBox, logIn, setLogIn, userImg, showNotificationBox, setShowNotificationBox, showUserInterestsBox, setShowUserInterestsBox, showPlay2Win, setShowPlay2Win, showStoreBox, setShowStoreBox, darkMode }) {
   return (
-    <nav className="w-[1400px] h-[70px] pl-10 pr-10 flex justify-between items-center rounded-2xl border bg-black/20 backdrop-blur-[5px] shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
+    <nav className="text-[#1a1a1a] border-[#1a1a1a] dark:text-white dark:border-white w-[1400px] h-[70px] pl-10 pr-10 flex justify-between items-center rounded-2xl border bg-black/20 backdrop-blur-[20px] shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
       <div className="flex justify-center items-center gap-16">
         <svg
           className="w-[100px]"
-          fill="#fff"
+          fill={darkMode ? "#fff" : "#000"}
           viewBox="0 0 32 32"
           version="1.1"
           xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +39,7 @@ export default function NavBar({ showPlayersBox, setShowPlayersBox, logIn, setLo
       </div>
 
       <div className="flex justify-end items-center gap-8 w-[70%]">
-        <NavButtons showPlayersBox={showPlayersBox} setShowPlayersBox={setShowPlayersBox} logIn={logIn} setLogIn={setLogIn} showNotificationBox={showNotificationBox} setShowNotificationBox={setShowNotificationBox} showUserInterestsBox={showUserInterestsBox} setShowUserInterestsBox={setShowUserInterestsBox} showPlay2Win={showPlay2Win} setShowPlay2Win={setShowPlay2Win} showStoreBox={showStoreBox} setShowStoreBox={setShowStoreBox} />
+        <NavButtons showPlayersBox={showPlayersBox} setShowPlayersBox={setShowPlayersBox} logIn={logIn} setLogIn={setLogIn} showNotificationBox={showNotificationBox} setShowNotificationBox={setShowNotificationBox} showUserInterestsBox={showUserInterestsBox} setShowUserInterestsBox={setShowUserInterestsBox} showPlay2Win={showPlay2Win} setShowPlay2Win={setShowPlay2Win} showStoreBox={showStoreBox} setShowStoreBox={setShowStoreBox} darkMode={darkMode} />
         <button className="border-2 border-blue-500 rounded-full"
           onClick={() => {
             if (logIn) { setLogIn(false); return; }
