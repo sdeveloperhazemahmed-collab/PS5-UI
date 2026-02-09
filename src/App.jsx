@@ -22,7 +22,6 @@ export default function App() {
   const PSLight = PSLightBG;
   const [bg, setBg] = useState(PSLight());
 
-
   const [volume, setVolume] = useState(0.3);
   const [time, setTime] = useState("00:00:00");
   const [players, setPlayers] = useState([{ id: 1, name: "Player 1" }]);
@@ -38,6 +37,9 @@ export default function App() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [PS5, setPS5] = useState(false);
+  const [PS4, setPS4] = useState(false);
+  const [DEAL, setDEAL] = useState(false);
   const [logIn, setLogIn] = useState(false);
   const [hovered, setHovered] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
@@ -46,8 +48,12 @@ export default function App() {
   const [showStoreBox, setShowStoreBox] = useState(false);
   const [showManageBox, setShowManageBox] = useState(false);
   const [showPlayersBox, setShowPlayersBox] = useState(false);
+  const [isConfirmedShipping, setIsConfirmedShipping] = useState(false);
   const [showNotificationBox, setShowNotificationBox] = useState(false);
+  const [showStoreCartWindow, setShowStoreCartWindow] = useState(false);
   const [showUserInterestsBox, setShowUserInterestsBox] = useState(false);
+  const [showStoreCategoryWindow, setShowStoreCategoryWindow] = useState(false);
+  const [showStoreFavouriteWindow, setShowStoreFavouriteWindow] = useState(false);
 
   const [isRead, setIsRead] = useState(false);
   const [notifications, setNotifications] = useState([
@@ -83,29 +89,28 @@ export default function App() {
 
   const [storeItems, setStoreItems] = useState([
     // ==== PS5 ====
-    { id: 1, specialDeal: true, name: "PlayStation Two Devices", text: "Twin consoles bundle of new g...", category: "PS5", afterOfferPrice: 56100, price: 66000, image: "store/PS5Deal.jpg", favourite: false, colors: ["bg-gray-400", "bg-white"], reviews: 5, stars: 4 },
-    { id: 2, specialDeal: true, name: "PlayStation Accessories", text: "Package of accessories includin...", category: "PS5", afterOfferPrice: 22000, price: 26900, image: "store/ps5-1140x642.jpg", favourite: false, colors: ["bg-gray-400", "bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 35, stars: 5 },
-    { id: 3, specialDeal: true, name: "PS5 Standard Console", text: "1TB SSD, Ultra HD gaming", category: "PS5", afterOfferPrice: 45000, price: 52000, image: "store/Sony-reveals-the-new-PS5-console-and-is-the-future - Copy.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 50, stars: 3 },
-    { id: 4, specialDeal: false, name: "PS5 Pulse 3D Headset", text: "Immersive 3D audio headset fo...", category: "PS5", afterOfferPrice: 1800, price: 2200, image: "store/PlayStation-Pulse-Elite-wireless-headset.jpg", favourite: false, colors: ["bg-gray-400", "bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 80, stars: 4 },
-    { id: 5, specialDeal: false, name: "DualSense Controller", text: "Wireless controller with adapti...", category: "PS5", afterOfferPrice: 2500, price: 3000, image: "store/wp11889270.jpg", favourite: false, colors: ["bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 200, stars: 5 },
-    { id: 6, specialDeal: true, name: "PS5 Essentials Bundle", text: "Console + Controller + Headset", category: "PS5", afterOfferPrice: 50000, price: 60000, image: "store/PS5-2.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 40, stars: 5 },
+    { id: 1, specialDeal: true, name: "PlayStation Two Devices", text: "Twin consoles bundle of new g...", category: "PS5", afterOfferPrice: 56100, price: 66000, image: "store/PS5Deal.jpg", favourite: false, colors: ["bg-gray-400", "bg-white"], reviews: 5, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 2, specialDeal: true, name: "PlayStation Accessories", text: "Package of accessories includin...", category: "PS5", afterOfferPrice: 22000, price: 26900, image: "store/ps5-1140x642.jpg", favourite: false, colors: ["bg-gray-400", "bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 35, stars: 5, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 3, specialDeal: true, name: "PS5 Standard Console", text: "1TB SSD, Ultra HD gaming", category: "PS5", afterOfferPrice: 45000, price: 52000, image: "store/Sony-reveals-the-new-PS5-console-and-is-the-future - Copy.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 50, stars: 3, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 4, specialDeal: false, name: "PS5 Pulse 3D Headset", text: "Immersive 3D audio headset fo...", category: "PS5", afterOfferPrice: 1800, price: 2200, image: "store/PlayStation-Pulse-Elite-wireless-headset.jpg", favourite: false, colors: ["bg-gray-400", "bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 80, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 5, specialDeal: false, name: "DualSense Controller", text: "Wireless controller with adapti...", category: "PS5", afterOfferPrice: 2500, price: 3000, image: "store/wp11889270.jpg", favourite: false, colors: ["bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 200, stars: 5, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 6, specialDeal: true, name: "PS5 Essentials Bundle", text: "Console + Controller + Headset", category: "PS5", afterOfferPrice: 50000, price: 60000, image: "store/PS5-2.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 40, stars: 5, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
 
     // ==== PS5 Accessories اضافية بدون specialDeal ====
-    { id: 12, specialDeal: false, name: "PS5 Charging Station", text: "Charge up to 2 DualSense cont...", category: "PS5", afterOfferPrice: 700, price: 900, image: "store/y4b660897-5830-4bb8-bced-b2ada1cb894b.jpg", favourite: false, colors: ["bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 22, stars: 4 },
-    { id: 13, specialDeal: false, name: "PS5 Media Remote", text: "Control movies & music easily", category: "PS5", afterOfferPrice: 600, price: 800, image: "store/media-remote-thumbnail-ps5-01-en-18sep20.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 15, stars: 4 },
-    { id: 14, specialDeal: false, name: "PS5 Console Skin", text: "Customizable skin for your PS5", category: "PS5", afterOfferPrice: 400, price: 600, image: "store/ps5-digital-console-modern-oak-skins_ab421f8f-eb02-47af-bb80-1758a9ddd729_2048x2048.jpg", favourite: false, colors: null, skins: ["/store/01NN4NlGPdL._SL1240_.jpg", "/store/11NN4NlGPdL._SL1240_.jpg", "/store/21NN4NlGPdL._SL1240_.jpg", "/store/31NN4NlGPdL._SL1240_.jpg", "/store/41NN4NlGPdL._SL1240_.jpg", "/store/51NN4NlGPdL._SL1240_.jpg"], reviews: 18, stars: 4 },
+    { id: 11, specialDeal: false, name: "PS5 Charging Station", text: "Charge up to 2 DualSense cont...", category: "PS5", afterOfferPrice: 700, price: 900, image: "store/y4b660897-5830-4bb8-bced-b2ada1cb894b.jpg", favourite: false, colors: ["bg-white", "bg-black", "bg-red-500", "bg-blue-600"], reviews: 22, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 12, specialDeal: false, name: "PS5 Media Remote", text: "Control movies & music easily", category: "PS5", afterOfferPrice: 600, price: 800, image: "store/media-remote-thumbnail-ps5-01-en-18sep20.jpg", favourite: false, colors: ["bg-white", "bg-black"], reviews: 15, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 13, specialDeal: false, name: "PS5 Console Skin", text: "Customizable skin for your PS5", category: "PS5", afterOfferPrice: 400, price: 600, image: "store/ps5-digital-console-modern-oak-skins_ab421f8f-eb02-47af-bb80-1758a9ddd729_2048x2048.jpg", favourite: false, colors: null, skins: ["/store/01NN4NlGPdL._SL1240_.jpg", "/store/11NN4NlGPdL._SL1240_.jpg", "/store/21NN4NlGPdL._SL1240_.jpg", "/store/31NN4NlGPdL._SL1240_.jpg", "/store/41NN4NlGPdL._SL1240_.jpg", "/store/51NN4NlGPdL._SL1240_.jpg"], reviews: 18, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
 
     // ==== PS4 ====
-    { id: 7, specialDeal: true, name: "PS4 Standard Console", text: "1TB storage, slim version", category: "PS4", afterOfferPrice: 14500, price: 16500, image: "store/ps4-console.jpg", favourite: false, colors: ["bg-gray-400", "bg-white"], reviews: 42, stars: 4 },
-    { id: 8, specialDeal: false, name: "DualShock 4 Controller", text: "Wireless controller for PS4", category: "PS4", afterOfferPrice: 1200, price: 1500, image: "store/ps4-controller.jpg", favourite: false, colors: ["bg-black", "bg-blue", "bg-red"], reviews: 120, stars: 5 },
-    { id: 9, specialDeal: false, name: "PS4 Gaming Headset", text: "Over-ear headset with surround sound", category: "PS4", afterOfferPrice: 850, price: 1200, image: "store/ps4-headset.jpg", favourite: false, colors: ["bg-black", "bg-gray-400"], reviews: 75, stars: 4 },
-    { id: 10, specialDeal: false, name: "PS4 Charging Station", text: "Charge up to 2 DualShock 4 controllers", category: "PS4", afterOfferPrice: 500, price: 700, image: "store/ps4-charging.jpg", favourite: false, colors: ["bg-black", "bg-white"], reviews: 20, stars: 4 },
-    { id: 11, specialDeal: true, name: "PS4 Multiplayer Pack", text: "2 controllers + racing wheel accessory", category: "PS4 Bundle", afterOfferPrice: 2500, price: 3200, image: "store/ps4-multiplayer.jpg", favourite: false, colors: ["bg-black", "bg-gray-400"], reviews: 18, stars: 5 },
+    { id: 7, specialDeal: true, name: "PS4 Standard Console", text: "1TB storage, slim version", category: "PS4", afterOfferPrice: 14500, price: 16500, image: "store/y_2077823.jpg", favourite: false, colors: ["bg-black"], reviews: 42, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 8, specialDeal: false, name: "DualShock 4 Controller", text: "Wireless controller for PS4", category: "PS4", afterOfferPrice: 1200, price: 1500, image: "store/ps_top_2.jpg", favourite: false, colors: ["bg-black", "bg-white", "bg-[rgb(151,170,211)]", "bg-orange-400", "bg-[#f2d96a]", "bg-red-500", "bg-blue-600"], reviews: 120, stars: 5, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 9, specialDeal: false, name: "PS4 Gaming Headset", text: "Over-ear headset with surroun...", category: "PS4", afterOfferPrice: 850, price: 1200, image: "store/y_2077824.jpg", favourite: false, colors: ["bg-black"], reviews: 75, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 10, specialDeal: false, name: "PS4 Charging Station", text: "Charge up to 2 DualShock 4 co...", category: "PS4", afterOfferPrice: 500, price: 700, image: "store/z4b660897-5830-4bb8-bced-b2ada1cb894b.jpg", favourite: false, colors: ["bg-black", "bg-white"], reviews: 20, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
 
     // ==== PS4 Accessories اضافية بدون specialDeal ====
-    { id: 15, specialDeal: false, name: "PS4 Media Remote", text: "Control movies & music easily", category: "PS4", afterOfferPrice: 500, price: 650, image: "store/ps4-remote.jpg", favourite: false, colors: ["bg-black", "bg-white"], reviews: 12, stars: 4 },
-    { id: 16, specialDeal: false, name: "PS4 Console Skin", text: "Customizable skin for your PS4", category: "PS4", afterOfferPrice: 350, price: 500, image: "store/ps4-skin.jpg", favourite: false, colors: ["bg-black", "bg-blue", "bg-red"], reviews: 10, stars: 4 },
-    { id: 17, specialDeal: false, name: "PS4 Vertical Stand", text: "Keep your PS4 upright and ventilated", category: "PS4", afterOfferPrice: 400, price: 550, image: "store/ps4-stand.jpg", favourite: false, colors: ["bg-black", "bg-gray-400"], reviews: 8, stars: 4 },
+    { id: 14, specialDeal: false, name: "PS4 Media Remote", text: "Control movies & music easily", category: "PS4", afterOfferPrice: 500, price: 650, image: "store/z1_gf7j7hZVoJ7PJELxI24t4g.jpg", favourite: false, colors: ["bg-black", "bg-white"], reviews: 12, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    { id: 15, specialDeal: false, name: "PS4 Console Skin", text: "Customizable skin for your PS4", category: "PS4", afterOfferPrice: 350, price: 500, image: "store/PS4P_4.jpg", favourite: false, colors: null, skins: ["/store/b0-dbaef5c9655da29ce616787392134349-1024-102.jpg", "/store/b1-dbaef5c9655da29ce616787392134349-1024-102.jpg", "/store/b2-dbaef5c9655da29ce616787392134349-1024-102.jpg", "/store/b3-dbaef5c9655da29ce616787392134349-1024-102.jpg", "/store/b4-dbaef5c9655da29ce616787392134349-1024-102.jpg", "/store/b5-dbaef5c9655da29ce616787392134349-1024-102.jpg"], reviews: 10, stars: 4, inCart: false, confirmedShipping: false, quantity: "", selectedColor: null,},
+    // { id: 16, specialDeal: false, name: "PS4 Vertical Stand", text: "Keep your PS4 upright and ven...", category: "PS4", afterOfferPrice: 400, price: 550, image: "store/zz2flyl5mggkt61.jpg", favourite: false, colors: ["bg-black"], reviews: 8, stars: 4, inCart: false, },
   ]);
 
 
@@ -136,6 +141,7 @@ export default function App() {
   }, [darkMode]);
 
 
+
   const handleRename = (id) => {
     const newName = prompt("Enter new name:");
     if (!newName) return;
@@ -156,6 +162,7 @@ export default function App() {
     <>
       {/* Overlay */}
       {/* <div className="fixed inset-0 bg-white/20 dark:bg-black/40 pointer-events-none z-0 transition"></div> */}
+      
       <div className="flex flex-col gap-20 justify-start items-center h-[100vh]">
         <header className="flex flex-col justify-center items-center mt-14">
           <NavBar showPlayersBox={showPlayersBox} setShowPlayersBox={setShowPlayersBox} logIn={logIn} setLogIn={setLogIn} userImg={userImg} showNotificationBox={showNotificationBox} setShowNotificationBox={setShowNotificationBox} showUserInterestsBox={showUserInterestsBox} setShowUserInterestsBox={setShowUserInterestsBox} showPlay2Win={showPlay2Win} setShowPlay2Win={setShowPlay2Win} showStoreBox={showStoreBox} setShowStoreBox={setShowStoreBox} darkMode={darkMode} />
@@ -169,29 +176,13 @@ export default function App() {
               <SignForm isSignUpMode={isSignUpMode} setIsSignUpMode={setIsSignUpMode} password={password} setPassword={setPassword} confirmPassword={confirmPassword} setConfirmPassword={setConfirmPassword} email={email} setEmail={setEmail} username={username} setUsername={setUsername} userImg={userImg} setCurrentUser={setCurrentUser} setLogIn={setLogIn} showStoreBox={showStoreBox} setShowStoreBox={setShowStoreBox} />
             </div>
           )}
-
           {showPlayersBox && (<PlayersWindow addPlayer={addPlayer} players={players} setPlayers={setPlayers} hovered={hovered} setHovered={setHovered} showPlayersBox={showPlayersBox} handleRename={handleRename} showManageBox={showManageBox} setShowManageBox={setShowManageBox} />)}
-
           {showNotificationBox && (<NotificationWindow notifications={notifications} setNotifications={setNotifications} isRead={isRead} setIsRead={setIsRead} darkMode={darkMode} bg={bg} setBg={setBg} PSDark={PSDark} PSLight={PSLight} />)}
-
           {showUserInterestsBox && (<UserInterests />)}
-
           {showPlay2Win && (<Play2Win />)}
-
-          {showStoreBox && (<StoreWindow storeItems={storeItems} setStoreItems={setStoreItems} darkMode={darkMode} />)}
-
+          {showStoreBox && (<StoreWindow storeItems={storeItems} setStoreItems={setStoreItems} darkMode={darkMode} showStoreCategoryWindow={showStoreCategoryWindow} setShowStoreCategoryWindow={setShowStoreCategoryWindow} showStoreCartWindow={showStoreCartWindow} setShowStoreCartWindow={setShowStoreCartWindow} showStoreFavouriteWindow={showStoreFavouriteWindow} setShowStoreFavouriteWindow={setShowStoreFavouriteWindow} PS5={PS5} setPS5={setPS5} PS4={PS4} setPS4={setPS4} DEAL={DEAL} setDEAL={setDEAL} isConfirmedShipping={isConfirmedShipping} setIsConfirmedShipping={setIsConfirmedShipping} />)}
           <Games title={title} setTitle={setTitle} darkMode={darkMode} bg={bg} setBg={setBg} PSDark={PSDark} PSLight={PSLight} />
         </main>
-
-
-        {/* <div class="bg-white dark:bg-gray-800 text-black dark:text-white p-4 rounded">
-        Hello World
-        </div>
-        
-        <div class="bg-gray-800 dark:bg-white text-white dark:text-black p-4 rounded">
-        Another Box
-        </div> */}
-
 
         <footer className='fixed bottom-0 mb-7 dark:text-white text-[#1a1a1a]'>
           2026 Fake PS5 website. Just for learning.

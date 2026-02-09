@@ -1,9 +1,22 @@
-export default function StoreCards({ storeItems, setStoreItems }) {
+export default function StoreCards({ PS5, PS4, DEAL, storeItems, setStoreItems }) {
+  const filteredItems = storeItems.filter(item => {
+    const categoryMatch =
+      (!PS5 && !PS4) ||
+      (PS5 && item.category === "PS5") ||
+      (PS4 && item.category === "PS4");
+
+    const dealMatch =
+      !DEAL || item.specialDeal === true;
+
+    return categoryMatch && dealMatch;
+  });
+
+
   return (
     <>
       <div className="flex items-start justify-start gap-4 h-[calc(238px*var(--card-scale))] flex-wrap w-full overflow-x-auto scroll-smooth ps-scroll">
         {/* h-[238px] */}
-        {storeItems.map((item) => (
+        {filteredItems.map((item) => (
           <div className="group flex flex-col justify-start items-start transition-all duration-200 gap-[1px] p-[10px] rounded-xl w-[calc(25.5%*var(--card-scale))] h-[100%] border border-transparent bg-[#e6e9ee] dark:bg-[#1a1a1a] hover:border-blue-600 dark:hover:border-blue-500 backdrop-blur-[5px] flex-shrink-0 relative">
             <img src={item.image} className="w-[100%] cursor-pointer rounded-xl" />
             {item.specialDeal ? (
@@ -27,11 +40,11 @@ export default function StoreCards({ storeItems, setStoreItems }) {
               <p className="flex justify-center items-center bg-green-300 text-[rgb(0,150,0)] text-[calc(10px*var(--card-scale))] font-bold px-1 py-[2px] rounded-md">{100 - (Math.round((item.afterOfferPrice / item.price) * 100))}% OFF</p>
             </div>
 
-            <div className="flex justify-center items-center gap-4">
-              <p className="text-[calc(12px*var(--card-scale))] text-[#1a1a1a74] dark:text-[#e5e5e574]">{item.colors ? ("colors:") : ("skins") }</p>
+            <div className="flex justify-center items-center gap-3">
+              <p className="text-[calc(12px*var(--card-scale))] text-[#1a1a1a74] dark:text-[#e5e5e574]">{item.colors ? ("colors:") : ("skins")}</p>
               <section className="flex justify-center items-center gap-1">
                 {item.colors ? (
-                  <div className="flex gap-2">
+                  <div className="flex gap-[6px]">
                     {item.colors.map((color, ndx) => (
                       <span
                         key={ndx}
@@ -64,8 +77,19 @@ export default function StoreCards({ storeItems, setStoreItems }) {
               <p className="text-[calc(12px*var(--card-scale))] text-[#1a1a1a74] dark:text-[#e5e5e574]">{item.reviews} reviews</p>
             </div>
 
-            <div className="flex items-center justify-evenly w-full absolute bottom-[calc(4px*var(--card-scale))] left-0">
-              <button className="flex justify-center items-center w-[75%] p-[2px] text-[calc(12px*var(--card-scale))] cursor-pointer transition-all duration-200 backdrop-blur-[10px] active:translate-y-[1px] text-white hover:shadow-[0_0_7px_rgb(37,99,235)] dark:hover:shadow-[0_0_7px_rgb(0,170,255)] bg-blue-500 dark:hover:border-blue-500 hover:border-blue-600 rounded-lg">Add to Cart</button>
+            <div className="flex items-center justify-evenly w-full absolute bottom-[calc(5px*var(--card-scale))] left-0">
+              <button onClick={() => {
+                setStoreItems(prev =>
+                  prev.map(storeItem =>
+                    storeItem.id === item.id
+                      ? { ...storeItem, inCart: true }
+                      : storeItem
+                  )
+                );
+              }}
+                className={`flex justify-center items-center w-[75%] p-[2px] text-[calc(12px*var(--card-scale))] cursor-pointer transition-all duration-200 backdrop-blur-[10px] active:translate-y-[1px] text-white ${((!item.inCart)) ? ("hover:shadow-[0_0_7px_rgb(37,99,235)] dark:hover:shadow-[0_0_7px_rgb(0,170,255)] bg-blue-500 dark:hover:border-blue-500 hover:border-blue-600") : ("hover:shadow-[0_0_7px_rgb(37,235,99)] dark:hover:shadow-[0_0_7px_rgb(0,255,170)] bg-green-500 dark:hover:border-green-500 hover:border-green-600")} rounded-lg`}>
+                {(!item.inCart) ? ("Add to Cart") : ("✓ Added to Cart")}
+              </button>
               <button
                 onClick={() => {
                   setStoreItems(prev =>
@@ -82,7 +106,9 @@ export default function StoreCards({ storeItems, setStoreItems }) {
           </div>
         ))}
 
-      </div>
+        <span className={`w-4 h-4 rounded-full shadow-[0_0_2px_rgba(0,0,0,0.5)] dark:shadow-[0_0_2px_rgba(255,255,255,0.5)]`}></span>
+      </div >
+
       {/* <div className="absolute top-20 w-full h-1 bg-white"></div> */}
       {/* <button className="flex justify-center items-center w-[60%] p-1 cursor-pointer transition-all duration-200 backdrop-blur-[10px] active:translate-y-[1px] text-[#1a1a1a] dark:text-white dark:active:bg-[#2424247c] dark:bg-[#1a1a1a] active:bg-[#dbdbdb7c] bg-[#e6e9ee] hover:shadow-[0_0_7px_rgb(37,99,235)] dark:hover:shadow-[0_0_7px_rgb(0,170,255)] dark:hover:border-blue-500 hover:border-blue-600 border border-[#1a1a1a] dark:border-white rounded-lg">Manage Players</button> */}
     </>

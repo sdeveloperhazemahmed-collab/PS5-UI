@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Audio from "../components/Audio";
+// import Audio from "../components/Audio";
 
 export default function Clock({ time, setTime, volume, setVolume, darkMode, setDarkMode, setBg, PSDark, PSLight }) {
   useEffect(() => {
@@ -55,7 +55,7 @@ export default function Clock({ time, setTime, volume, setVolume, darkMode, setD
         <span className="pressure"></span>
       </div>
       <div className="flex justify-center items-center gap-14 text-[18px]">
-        <Audio volume={volume} setVolume={setVolume} />
+        {/* <Audio volume={volume} setVolume={setVolume} /> */}
         <button
           onClick={() => {
             setBg(darkMode ? PSLight : PSDark);
